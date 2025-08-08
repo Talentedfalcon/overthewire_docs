@@ -1,0 +1,22 @@
+Solutions:
+
+Level 0:
+	- Open Inspector and check the comments
+	- Next Password: 0nzCigAq7t2iALyvU9xcHlYN4MlkIwlq
+
+Level 1:
+	- Again Inspect and check the comments
+	- Next Password: TguMNxKo1DSa1tujBLuZJnDUlCcUAPlI
+
+Level 2:
+	- From the hidden image, figure out that /files/ is accessible
+	- from there go to users.txt
+	- Next Password: 3gqisGdR0pjm6tpkDKdIWO2hSvchLeYH
+
+Level 3:
+	- append /robots.txt (most sites have a robots.txt to define rules for bots and crawlers)
+	- now go to /s3cr3t/
+	- from there go to users.txt
+	- Next Password: QryZXc2e0zahULdHrtHxzyYkj59kUxLQ
+
+

