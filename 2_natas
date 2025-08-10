@@ -19,4 +19,24 @@ Level 3:
 	- from there go to users.txt
 	- Next Password: QryZXc2e0zahULdHrtHxzyYkj59kUxLQ
 
+Level 4:
+	- go to network tab in developer console
+	- after clicking on 'Refresh page' inspect the response
+	- change the 'Referer' header to 'http://natas5.natas.labs.overthewire.org/" and send
+	- Password: 0n35PkggAPm2zbEpOU802c0x0Msn1ToK 
+
+Level 5:
+	- again go to network tab
+	- this time modify the cookie to loggedin=1 and then send
+	- Password: 0RoJwHdSKWFTYR5WuiAewauSuNaBXned
+
+Level 6:
+	- check the sourcecode
+	- go to /includes/secret.inc and inspect it
+	- copy the secret from comments and use that as the input
+	- Password: bmg8SvU1LizuWjx3y7xkNERkHxGre0GS
+
+Level 7:
+	- add the search param 'index.php?page=/etc/natas_webpass/natas8' to url
+	- Password: xcoXLmzMkoIP9D7hlgPlh9XD7OgLAe5Q
 
