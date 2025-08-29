@@ -40,3 +40,13 @@ Level 7:
 	- add the search param 'index.php?page=/etc/natas_webpass/natas8' to url
 	- Password: xcoXLmzMkoIP9D7hlgPlh9XD7OgLAe5Q
 
+Level 8:
+	- go to "https://encode-decode.com/" then decode bin2hex
+	- now reverse the string and decode base64
+	- Password: ZE1ck82lmdGIoErlhQgWND6j2Wzz6b6t
+
+Level 9:
+	- in the input bar type ; cat /etc/natas_webpass/natas10
+	- Password: t7I5VHvpa14sJTUGV0cbEsbYfFP2dmOu
+
+
