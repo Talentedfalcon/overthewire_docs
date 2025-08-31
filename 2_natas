@@ -46,7 +46,23 @@ Level 8:
 	- Password: ZE1ck82lmdGIoErlhQgWND6j2Wzz6b6t
 
 Level 9:
-	- in the input bar type ; cat /etc/natas_webpass/natas10
+	- in the input bar type '; cat /etc/natas_webpass/natas10' (here we inject commands by exploiting php's passthru)
 	- Password: t7I5VHvpa14sJTUGV0cbEsbYfFP2dmOu
 
+Level 10:
+	- in the input bar type '.* /etc/natas_webpass/natas11' (here we exploit the grep command)
+	- Password: UJdqkK1pTu6VLt9UHWAgRZz6sVUZ3lEk
+
+Level 11: (decode and encode done using https://gchq.github.io/CyberChef/)
+	- Finding the XOR key:
+		- URL decode the cookie followed by base64 decode
+		- After which XOR encrypt using the json form of $defaultdata
+		- key: eDWo
+	- Generating the new cookie data:
+		- make sure "showpassword" key is equal to "yes"
+		- now apply json encoding and then XOR encrypt using the above key
+		- now do base64 encode
+		- new cookie data: HmYkBwozJw4WNyAAFyB1VUc9MhxHaHUNAic4Awo2dVVHZzEJAyIxCUc5
+	- now replace the old cookie's data and reload
+	- Password: yZdkjAYZRd3R7tq7T5kXMjMJlOIkzDeB
 
