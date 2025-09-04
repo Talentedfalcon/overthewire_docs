@@ -84,4 +84,12 @@ Level 13: (tricking the exif_imagetype() function)
 Level 14: (SQL Injection)
 	- in username type '1" OR 1=1 OR "' and keep password empty
 	- Password: SdqIqBsFcz3yotlNYErZSZwblkm0lrvx
- 
+
+Level 15: (Blind SQL Injection)
+	- run the 'natas15_blindsqlinject.py' script and after a while the password will be available
+	- Password: hPkjKYviLQctEW33QmuXL6eDVfMW4sGo
+
+Level 16: ({Blind?} Command Injection and getting indirectly info based on response)
+	- run the 'natas16_commandinject.py' script and after a while the password will be available
+	- Password: EqjHJbo7LFNb8vwhHb9s75hokh5TF0OC
+
