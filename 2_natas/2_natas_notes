@@ -93,3 +93,11 @@ Level 16: ({Blind?} Command Injection and getting indirectly info based on respo
 	- run the 'natas16_commandinject.py' script and after a while the password will be available
 	- Password: EqjHJbo7LFNb8vwhHb9s75hokh5TF0OC
 
+Level 17: (Time-based Blind SQL Injection)
+	- run the 'natas17_time-blindsql.py' script and after a while the password will be available
+	- Password: 6OG1PbKdVjyBlpxgD4DDbRG6ZLlCGgCJ
+
+Level 18: (Session ID Fixation)
+	- run the 'natas18_sessionfixation.py' script and after a while the password will be available
+	- Password: tnwER7PdfWkxsG4FNWUtoAZ9VyZTJqJr
+
