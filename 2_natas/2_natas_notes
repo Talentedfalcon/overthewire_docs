@@ -98,6 +98,21 @@ Level 17: (Time-based Blind SQL Injection)
 	- Password: 6OG1PbKdVjyBlpxgD4DDbRG6ZLlCGgCJ
 
 Level 18: (Session ID Fixation)
+	- the max number of sessionIDs is 640, so we just brute-force it
 	- run the 'natas18_sessionfixation.py' script and after a while the password will be available
 	- Password: tnwER7PdfWkxsG4FNWUtoAZ9VyZTJqJr
 
+Level 19: (Session ID Fixation but Cookie is hex-encoded)
+	- similar to the above but the PHPSESSID is hex-encoded version of '{sessionID}-admin'
+	- run the 'natas19_sessionfixationencoded.py' script and after a while the password will be available
+	- Password: p5mCvP7GS2K6Bmt3gqhM2Fc1A5T8MVyw
+
+Level 20:
+	- here a user defined session_set_save_handler functions
+	- the write handler stores the session info in a random file as '$key $value\n'
+	- the read handler reads from that same file and updates the $_SESSION with all the keys it can find in that file
+	- now the input value is stored in the $_SESSION["name"] variable
+	- so if we give input in URL as '?name=admin%0Aadmin%201', it will stores in the file as 'name admin/nadmin 1' (in 2 lines)
+	- now when the read handler saves to $_SESSION it will set the admin flag to 1 which displays the password
+	- Password: BPhv63cKE1lkQl04cE5CuFTzXe15NfiH 
+ 
