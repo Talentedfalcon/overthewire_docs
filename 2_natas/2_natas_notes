@@ -115,4 +115,16 @@ Level 20:
 	- so if we give input in URL as '?name=admin%0Aadmin%201', it will stores in the file as 'name admin/nadmin 1' (in 2 lines)
 	- now when the read handler saves to $_SESSION it will set the admin flag to 1 which displays the password
 	- Password: BPhv63cKE1lkQl04cE5CuFTzXe15NfiH 
+
+Level 21:
+	- inspect the site2's form's POST request and edit and resend the payload with '&admin=1'
+	- this adds $_SESSION["admin"]=1
+	- since the site are co-located, copy the Session ID of site2 to site1 and the key will be available
+	- Password: d8rwGBl0Xslg3b76uh3fEbSlnOUBlozz
+
+Level 22:
+	- use the command 'curl -H 'Authorization: Basic bmF0YXMyMjpkOHJ3R0JsMFhzbGczYjc2dWgzZkViU2xuT1VCbG96eg==' 'http://natas22.natas.labs.overthewire.org/?revelio' in terminal
+	- this prevents the redirect and just gives the output of the ?revelio url
+	- Password: dIUQcI3uSus1JEOSSWRAEXBG8KbR8tRs
+
  
