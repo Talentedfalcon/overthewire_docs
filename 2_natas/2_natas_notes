@@ -127,4 +127,20 @@ Level 22:
 	- this prevents the redirect and just gives the output of the ?revelio url
 	- Password: dIUQcI3uSus1JEOSSWRAEXBG8KbR8tRs
 
- 
+Level 23:
+	- the input should be '${some number>10}iloveyou' due to strstr() and the string>10 conditional 
+	- Password: MeuqmfJ8DDKuTr5pcvzFKSwlxedZYEWd
+
+Level 24:
+	- we cause a warning in strcmp() by making the input an array which makes it return NULL.
+	- so the url param is 'passwd[]'
+	- Password: ckELKUWZUfpOv6uxS6M7lXBpBssJZ4Ws
+
+Level 25:
+	- the '../' check can be fooled with '....//'
+	- now the url param is 'lang=....//logs/natas25_${Session ID}.log'
+	- now we manipulate the value of log file (which records the request header's User-Agent param)
+	- so we send the GET request again but change the User-Agent param to '<?php echo shell_exec("cat /etc/natas_webpass/natas26"); ?>'
+	- now check the response of the request and the next password should be available
+	- Password: cVXXwxMS3Y26n5UZU89QgpGmWCelaQlE
+
