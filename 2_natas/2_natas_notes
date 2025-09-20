@@ -144,3 +144,15 @@ Level 25:
 	- now check the response of the request and the next password should be available
 	- Password: cVXXwxMS3Y26n5UZU89QgpGmWCelaQlE
 
+Level 26: (PHP Object Injection through unserialize())
+	- here the unserialize() method is exploited:
+		- when an object (of an existing class) is unserialized in php it causes it to call a 'magic function' __wakeup() 
+		- if that fails then the __destruct() is called
+		- there is class called Logger which has a defined __destruct()
+		- the __destruct() writes a message to a file on call
+		- so we define the file and inject a command in the message variables of Logger class
+	- since drawing cookie is unserialized (in code) so we will inject the Logger object through it
+	- run 'natas26_php-object-inject.php' (make sure to replace the sessionID with the current one) to get required drawing cookie data
+	- now refresh the page and go to 'img/natas26_{sessionID}.php' 
+	- Password: u3RRffXjysjgwFU6b9xa23i6prmUsYne
+
