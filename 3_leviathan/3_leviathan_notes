@@ -12,3 +12,27 @@ Level 1:
 	- we are now logged in as user 'leviathan2' and run 'cat /etc/leviathan_pass/leviathan2' 
 	- Password: NsN1HwFoyN 
 
+Level 2:
+	- create a temp folder and make a file called "test file.txt"
+	- create a symlink with the /etc/leviathan_pass/leviathan3: 'ln -s /etc/leviathan_pass/leviathan3 /tmp/{temp_folder}/test' 
+	- 'chmod 777 /tmp/{temp_folder}' to make the files read/writable
+	- run './printfile /tmp/{temp_folder}/"test file.txt"' to get the password
+	- when the above is run the /bin/cat reads from /tmp/{temp_folder}/test and ./file.txt (due to the space in the name)
+	- also the access() will see that /tmp/{temp_folder}/test is readable thus allowing for user id change
+	- Password: f0n8h2iWLP
+
+Level 3:
+	- same as level 1 but the password here is 'snlprintf'
+	- Password: WG1egElCvO
+
+Level 4:
+	- run './trash/bin'
+	- convert the binary to text and there is the password
+	- Password: 0dyxT7F4QD
+
+Level 5:
+	- '~/leviathan5' reads the /tmp/file.log file so let's trick it >:)
+	- 'ln -s /etc/leviathan_pass/leviathan6 /tmp/file.log'
+	- run './leviathan5' and the password is revealed
+	- Password: szo7HDB88w
+
