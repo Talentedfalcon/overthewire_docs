@@ -156,3 +156,7 @@ Level 26: (PHP Object Injection through unserialize())
 	- now refresh the page and go to 'img/natas26_{sessionID}.php' 
 	- Password: u3RRffXjysjgwFU6b9xa23i6prmUsYne
 
+Level 27: (!!For some reason this level doesn't work as it should)
+	- create a POST request with username:'natas28+[64*' ']+a' and this causes another natas28 to be made (since VARCHAR(64) and ' ' is trimmed)
+	- now login in again as 'natas28' without the password and the next password will be available
+	- Password: Unable to get 
