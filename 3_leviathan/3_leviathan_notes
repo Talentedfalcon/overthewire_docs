@@ -1,0 +1,14 @@
+Solutions:
+
+Level 0:
+	- 'scp -P 2223 leviathan0@leviathan.labs.overthewire.org:~/.backup/bookmarks.html ./bookmarks.html' to get the bookmarks.html
+	- open it and search for 'leviathan'
+	- check the element and the password will be in the a tag's href attribute
+	- Password: 3QJ3TgzHDq
+
+Level 1:
+	- check is an ELF file
+	- run ltrace ./check and from that we can see that the password is 'sex'
+	- we are now logged in as user 'leviathan2' and run 'cat /etc/leviathan_pass/leviathan2' 
+	- Password: NsN1HwFoyN 
+
