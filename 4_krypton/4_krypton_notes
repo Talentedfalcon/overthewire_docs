@@ -1,0 +1,10 @@
+Solutions:
+
+Level 0:
+	- base64 decode the string given in the site
+	- Password: KRYPTONISGREAT
+
+Level 1:
+	- use a ROT13 decoder on the cyphertext in /krypton/krypton1/krypton2
+	- Password: ROTTEN
+ 
