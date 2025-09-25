@@ -7,4 +7,16 @@ Level 0:
 Level 1:
 	- use a ROT13 decoder on the cyphertext in /krypton/krypton1/krypton2
 	- Password: ROTTEN
+
+Level 2:
+	- /krypton/krypton2/krypton3 uses Caesar Cypher with a +12 shift
+	- Password: CAESARISEASY
+
+Level 3:
+	- Run the below command in /krypton/krypton3 to get the frequency map of found* files
+	- 'for i in {A..Z}; do cat found1 found2 found3 | tr -cd $i | wc -c | tr -d '\n'; printf " $i\n"; done | sort -nr | awk '{print $2}' | tr -d '\n''
+	- Discovered Frequency: SQJUBNGCDZVWMYTXKELAFIORHP
+	- English Language Frequency: EATSORNIHCLDUPYFWGMBKVXQJZ
+	- Run 'cat krypton4 | tr '{Discovered Frequency}' '{English Language Frequency}''
+	- Password: BRUTE
  
