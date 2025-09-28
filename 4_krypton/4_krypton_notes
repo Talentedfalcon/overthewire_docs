@@ -1,22 +1,45 @@
 Solutions:
 
-Level 0:
+Level 0: (Base64)
 	- base64 decode the string given in the site
 	- Password: KRYPTONISGREAT
 
-Level 1:
+Level 1: (ROT13)
 	- use a ROT13 decoder on the cyphertext in /krypton/krypton1/krypton2
 	- Password: ROTTEN
 
-Level 2:
-	- /krypton/krypton2/krypton3 uses Caesar Cypher with a +12 shift
+Level 2: (Caesar Cipher)
+	- /krypton/krypton2/krypton3 uses Caesar Cipher with a +12 shift
 	- Password: CAESARISEASY
 
-Level 3:
+Level 3: (Simple Substitution Cipher)
 	- Run the below command in /krypton/krypton3 to get the frequency map of found* files
 	- 'for i in {A..Z}; do cat found1 found2 found3 | tr -cd $i | wc -c | tr -d '\n'; printf " $i\n"; done | sort -nr | awk '{print $2}' | tr -d '\n''
 	- Discovered Frequency: SQJUBNGCDZVWMYTXKELAFIORHP
 	- English Language Frequency: EATSORNIHCLDUPYFWGMBKVXQJZ
 	- Run 'cat krypton4 | tr '{Discovered Frequency}' '{English Language Frequency}''
 	- Password: BRUTE
- 
+
+Level 4: (Vigenere Cipher)
+	- the vigenere cipher has a KEY which is of certain length
+	- some formula: 
+		- ciphertext=(plaintext[i] + KEY[i%KEY_len])%26
+		- plaintext=(ciphertext[i] - KEY[i%KEY_len])%26
+	- first we have to figure out the key length (i know the website says 6 but i am a maniac and want to do it the hard way)
+	- finding KEY_len:
+		- find number coincidences but shifting the string right (one shift at a time)
+		- find the all the distances between the adjacent bigger coincidence values
+		- get the mode of those distances and that is the most likely KEY_len
+	- finding the key:
+		- divide the ciphertext into {0,KEY_len} segments where each segment n has a the nth letter (like segment 0 has letter (0,0+KEY_len,0+2*KEY_len,...)
+		- now get the frequency of each segment seperately and map it to the full alphabet
+		- now do a dot product with this frequency and the english language frequency
+		- shift the frequency array to the left and do the dot product again
+		- whichever has the higher dot product then that shift's value is the correct letter for that segment
+		- repeat for each segment and voila. There is your KEY
+	- run 'python vigenere_keybreak.py <ciphertext_file>' to get the key
+	- therefore KEY is 'FREKEY'
+	- now the cipertext is in /krypton/krypton4/krypton5 (cipertext: HCIKVRJOX)
+	- run 'python vigenere_decrypt.py <KEY> <ciphertext_file>' to get the plaintext
+	- Password: CLEARTEXT
+
