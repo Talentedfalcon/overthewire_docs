@@ -20,7 +20,7 @@ Level 3: (Simple Substitution Cipher)
 	- Run 'cat krypton4 | tr '{Discovered Frequency}' '{English Language Frequency}''
 	- Password: BRUTE
 
-Level 4: (Vigenere Cipher)
+Level 4: (Vigenere Cipher when keylength known)
 	- the vigenere cipher has a KEY which is of certain length
 	- some formula: 
 		- ciphertext=(plaintext[i] + KEY[i%KEY_len])%26
@@ -42,4 +42,10 @@ Level 4: (Vigenere Cipher)
 	- now the cipertext is in /krypton/krypton4/krypton5 (cipertext: HCIKVRJOX)
 	- run 'python vigenere_decrypt.py <KEY> <ciphertext_file>' to get the plaintext
 	- Password: CLEARTEXT
+
+Level 5: (Vigenere Cipher when keylength unknown)
+	- so umm... run the previous commands :) (let's gooo... my insanity last level paid off)
+	- key: KEYLENGTH
+	- ciphertext: BELOSZ
+	- Password: RANDOM
 

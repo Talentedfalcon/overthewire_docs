@@ -2,6 +2,7 @@ import sys
 
 if(len(sys.argv)<3):
     print("wrong input\nusage: python vigenere_decrypt <key> <cypherfile>")
+    exit(1)
 
 key=[ord(i)-65 for i in list(sys.argv[1])]
 

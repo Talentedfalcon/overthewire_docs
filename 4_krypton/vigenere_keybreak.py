@@ -100,9 +100,12 @@ def get_key(cipher,key_len):
     return key
 
 cipher=''
-for arg in sys.argv[1:]:
-    with open(arg,"r") as file:
-        cipher+="".join(file.read().strip().upper().split(" "))
+if(len(sys.argv)>2):
+    print("wrong input\nusage: python vigenere_keybreak.py <filename>")
+    exit(1)
+
+with open(sys.argv[1],"r") as file:
+    cipher+="".join(file.read().strip().upper().split(" "))
 
 key_len=find_key_len(cipher)
 print(f"Estimated key length: {key_len}")
