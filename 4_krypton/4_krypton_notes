@@ -49,3 +49,16 @@ Level 5: (Vigenere Cipher when keylength unknown)
 	- ciphertext: BELOSZ
 	- Password: RANDOM
 
+Level 6: (LFSR [Linear Feedback Shift Register] Encryption)
+	- LFSR is stream cipher that generates a pseudo-random key whose length is equal to the plaintext
+	- the issue with it is that after a certain number of loops (depending on the LFSR size) the pattern repeats
+	- in this level we have execute access of the encrypt function. So we can perform a known plaintext attack
+	- create a file filled with 1000 A's and encrypt it
+	- an obvious repetition is seen in the ciphertext namely EICTDGYIYZKTHNSIRFXYCPFUEOCKRN
+	- now we can find out the generated key but subtracting the plaintext from ciphertext
+	- now shifting the key ciphertext with the generated key will give us the password
+	- run 'python lsfr_known_cipher.py' to get the plaintext
+	- key: [4,8,2,19,3,6,24,8,24,25,10,19,7,13,18] (shortened to key ciphertext's length for convenience)
+	- ciphertext: PNUKLYLWRQKGKBE
+	- Password: LFSRISNOTRANDOM
+
