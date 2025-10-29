@@ -8,3 +8,32 @@ Level 0:
 	- password is found in /etc/narnia_pass/narnia1
 	- Password: WDcYUTG5ul
 
+Level 1: (Shellcode Injection through env)
+	- the ./narnia1 program gets the value of $EGG env variable and executes it
+	- this is provides an opportunity to inject some shellcode (it's assembly code written in hex)
+	- since ./narnia1 runs with effective uid (euid) narnia2 we can exploit that
+	- requirements:
+		- we need to inject 'setreuid(geteuid(),geteuid())'
+		- then either open a shell and run 'cat /etc/narnia_pass/narnia2'
+		- or directly run 'cat /etc/narnia_pass/narnia2' to get the password (current shellcode uses this)
+	- the assembly for the shellcode is in 'shell_code.asm'
+	- convert to shellcode using 'https://defuse.ca/online-x86-assembler.htm'
+	- now 'export EGG=$(printf "<shellcode>")'
+	- run './narnia1' and there it is tHe PaSsWoRd
+	- Password: 5agRAXeBdG
+
+Level 2: (Shellcode Injection through strcpy())
+	- ./narnia2 uses strcpy() to copy to a buf of size 128
+	- if we input a value of 132+4 then we can overwrite the return address with the +4 bytes
+	- we make the return address be the address of the buf array
+	- to get buf address:
+		- use gdb and create a breakpoint at the strcpy() func_call
+		- use 'x/2xw $esp' to get the address for buf (it is usually the second one)
+		- to verify use 'x/136xb <buf_address>' and check if it aligns with the payload
+	- now buf array will have a shellcode stored in it from our input and thus that shellcode will execute
+	- we can use the previous shellcode with a few modifications like changing 'narnia2' to 'narnia3'
+	- we will fill the payload with 0x90 (NOP) so that it reaches the required size
+	- run './narnia2 $(python3 -c "import sys;sys.stdout.buffer.write(b'\x90'*57+b'<shellcode>'+b'<buf_address (in little endian)>')")'
+	- we may need to run it a few time with different buf_addresses (change few bits in LSB until it works)
+	- Password: 2xszzNl6uG
+
