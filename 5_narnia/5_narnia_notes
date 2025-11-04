@@ -22,8 +22,8 @@ Level 1: (Shellcode Injection through env)
 	- run './narnia1' and there it is tHe PaSsWoRd
 	- Password: 5agRAXeBdG
 
-Level 2: (Shellcode Injection through strcpy())
-	- ./narnia2 uses strcpy() to copy to a buf of size 128
+Level 2: (Shellcode Injection through strcpy() overflow)
+	- ./narnia2 uses strcpy() to copy argv[1] to a buf of size 128
 	- if we input a value of 132+4 then we can overwrite the return address with the +4 bytes
 	- we make the return address be the address of the buf array
 	- to get buf address:
@@ -50,4 +50,34 @@ Level 3:
 	- this causes the ofile to be '/tmp/output'
 	- now run 'cat /tmp/output' and we get the password
 	- Password: iqNWNk173q 
- 
+
+Level 4:
+	- similar to Level 2 we are trying to inject shellcode using strcpy()
+	- ./narnia4 uses strcpy() to copy argv[1] to a buf of size 256
+	- now instead of 132+4 overwrite we need to do a 264+4 overwrite
+	- again we use the previous shellcode with modification of 'narnia3' to 'narnia5'
+	- previously the buf_address was found through trial and error, this time we use a bash script to brute force it
+	- copy-paste the bash code in 'narnia5_addr_brute.sh' and run it
+	- after a few iteration the password will be available
+	- Password: Ni3xHPEuuw
+
+Level 5: (Format String Attack)
+	- we need to change the value of i from 1 to 500
+	- ./narnia5 uses snprintf to copy argv[1] to buffer
+	- so we can't overflow it but we can perform a format string attack
+	- in this attack we exploit the %s,%d,%x,etc.(format parameters) to either read/write to the memory
+	- when we provide a value/address for the format parameters (as typically done) then that value/address is stored and read from stack
+	- even if we don't provide one it will still read whatever is in the top of the stack
+	- since in the program snprintf doesn't have a defined format string, we can define our own >:)
+	- quick guide:
+		- the pointed address is the bottom of the stack in the beginning
+		- %{n}x prints the pointed address in stack and moves to the next element in stack (usually n is 08, higher values prints the same address with left padding)
+		- %s prints the value in the pointed address of the stack
+		- %n stores the length of string before it in the pointed address of stack
+		- if we add 'AAAA' (0x41414141) to the start of our format string then that value will be in the top of the stack. (due to how format strings work)
+		- we could replace that 'AAAA' with an address (in little endian(LE)) in the program. this will allow us to read the value using %s or write in it using %n
+	- to get the <addr_i>, we simply run the program with any arguement and the output will have it
+	- run './narnia5 $(python3 -c "import sys;sys.stdout.buffer.write(b'\x41\x41\x41\x41<addr_i (in LE)>%492x%n')")' (the 'AAAA' is to account for shift due to %x)
+	- now with the shell open, run 'cat /etc/narnia_pass/narnia6'
+	- Password: BNSjoSDeGL
+
