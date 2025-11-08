@@ -102,3 +102,22 @@ Level 7:
 	- run 'cat /etc/narnia_pass/narnia8'
 	- Password: i1SQ81fkb8
 
+Level 8:
+	- in ./narnia8 values from blah(which is a pointer to argv[1]) are copied into bok in func()
+	- gdb analysis:
+		- run it with 24*'A' then checking the $esp we can for every for loop iteration we can see that the 'A's are filled
+		- after the 20th 'A' the next 'A' allows the for loop to terminate
+		- this is because that 'A' changes the address that is referenced when copying the value (which usually references '0x00')
+		- what we need to do is maintain that return address to be the same as the address of blah
+		- now run it with 20*'A'+<addr_blah>+4*'B'+4*'C'
+		- now it changes the return address to '0x43434343'
+		- so we need to change the return address to an address which will contain our shellcode 
+		- this address with the shellcode will be at <addr_blah+32> (accounting for the previous characters)
+	- this time the shellcode will setreuid(geteuid,geteuid) and runs /bin/sh
+	- we need to execute with 20*'A'+<addr_blah>+4*'B'+<addr_blah+32>+<shellcode>
+	- the address for blah can vary so we copy-paste 'narnia8_addr_brute.sh' and run it
+	- after a few iterations the privileged shell will start
+	- run 'cat /etc/narnia_pass/narnia9'
+	- Password: 1FFD4HnU4K
+
+COMPLETED!!
