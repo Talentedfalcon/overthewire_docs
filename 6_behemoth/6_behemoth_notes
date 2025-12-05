@@ -22,3 +22,11 @@ Level 1:
 	- (python3 -c 'import sys;sys.stdout.buffer.write(71*b"\x90"+b"<SHELLCODE_addr(in LE)>")';cat) | ./behemoth1
 	- Password: IxPJbQtH8q
 
+Level 2:
+	- in this program 'touch' command is called but without using absolute path
+	- so we need to make our own "touch" script and add that touch's path to the $PATH env
+	- create a tmp folder and give it full permissions (chmod 777)
+	- inside the folder make a "touch" script that runs '/etc/behemoth_pass/behemoth3' (make it executable)
+	- now run '/behemoth/behemoth2'
+	- Password: JQ6tZGqt0i
+
